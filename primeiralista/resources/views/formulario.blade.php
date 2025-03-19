@@ -16,4 +16,11 @@
         </div>
         <button type="submit" class="btn btn-primary"> Enviar</button>
     </form>
+
+@isset ($soma)
+    <div class="alert alert-sucess mt-5">
+        O valor da soma é {{ $soma }}
+    </div>
+    @endisset
 @endsection
+
