@@ -1,7 +1,5 @@
 <?php
 
-<?php
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 #exemplo get
@@ -24,9 +22,6 @@ Route::post('/exer1resp', function(Request $request){
     $soma = $valor1 + $valor2;
     return view('exer1', compact('soma'));
 });
-
-
-
 #exercicio 1
 Route::get('/ex1', function(){
     return view('lista.ex1');
@@ -39,7 +34,6 @@ Route::post('listaex1', function(Request $request){
     $media = ($nota1 + $nota2 + $nota3) / 3;
     return view('lista.ex1', compact('media'));
 });
-
 
 #exercicio 2
 Route::get('/ex2', function(){
@@ -92,7 +86,6 @@ Route::post('/listaex5', function(Request $request){
 
     return view('lista.ex5', compact('area'));
 });
-
 
 #exercicio 6
 Route::get('/ex6', function(){ 
@@ -237,22 +230,8 @@ Route::post('/listaex15', function(Request $request){
     $segundos = $dias * 24 * 60 * 60;
     $resultado = "{$horas} horas, {$minutos} minutos, {$segundos} segundos";
 
-
-
-
     return view('lista.ex15', compact('resultado')); 
 });
-
-
-
-
-
-
-
-
-
-
-
 
 #base
 Route::get('/ex', function(){ #adicionar numero da pagina 
