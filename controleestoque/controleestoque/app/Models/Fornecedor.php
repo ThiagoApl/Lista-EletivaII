@@ -71,6 +71,3 @@ class FornecedorController extends Controller
         return redirect()->route('fornecedor.index')->with('success', 'fornecedor excluído com sucesso!');
     }
 }
-```
-
-
