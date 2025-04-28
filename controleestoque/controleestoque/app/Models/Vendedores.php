@@ -9,7 +9,9 @@ class Vendedores extends Model
         'nome',
         'foto',
         'codigo',
-        'quantidade_funcionarios_acesso'
+        'comissão',
+        'codigo de identificação',
+        'area de atuação'
     ];
 }
 
