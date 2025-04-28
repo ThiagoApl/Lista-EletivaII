@@ -31,7 +31,7 @@ namespace App\Http\Controllers;
         {
             $request->validate([
                 'nome' => 'required',
-                'codigo' => 'required|unique:produtos',
+                'codigo' => 'required|unique:fornecedor',
             ]);
 
             Fornecedor::create($request->all());
