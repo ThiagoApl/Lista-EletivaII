@@ -1,23 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Produto;
-use App\Models\Vendedores;
+
+use App\Models\Vendedor;
 use Illuminate\Http\Request;
 
-class VendedoresController extends Controller
+class VendedorController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $produtos = Vendedores::all();
+        $vendedores = Vendedor::all();
         return view('vendedores.index', compact('vendedores'));
     }
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -26,49 +30,80 @@ class VendedoresController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
             'nome' => 'required',
-            'codigo' => 'required|unique:vendedores',
+            'codigo_identificacao' => 'required|unique:vendedores',
+            'comissao' => 'required|numeric',
+            'area_atuacao' => 'required',
         ]);
 
-        Produto::create($request->all());
+        Vendedor::create($request->all());
 
-        return redirect()->route('vendedores.index')->with('success', 'vendedores criado com sucesso!');
+        return redirect()->route('vendedores.index')
+                         ->with('success', 'Vendedor criado com sucesso.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Vendedor  $vendedor
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Vendedor $vendedor)
+    {
+        return view('vendedores.show', compact('vendedor'));
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Vendedor  $vendedor
+     * @return \Illuminate\Http\Response
      */
-    public function edit(Vendedores $vendedores)
+    public function edit(Vendedor $vendedor)
     {
-        return view('vendedores.edit', compact('vendedores'));
+        return view('vendedores.edit', compact('vendedor'));
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Vendedor  $vendedor
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendedores $vendedores)
+    public function update(Request $request, Vendedor $vendedor)
     {
         $request->validate([
             'nome' => 'required',
-            'codigo' => 'required|unique:vendedores,codigo,' . $vendedores->id,
+            'codigo_identificacao' => 'required|unique:vendedores,codigo_identificacao,' . $vendedor->id,
+            'comissao' => 'required|numeric',
+            'area_atuacao' => 'required',
         ]);
 
-        $vendedores->update($request->all());
+        $vendedor->update($request->all());
 
-        return redirect()->route('vendedores.index')->with('success', 'vendedores atualizado com sucesso!');
+        return redirect()->route('vendedores.index')
+                         ->with('success', 'Vendedor atualizado com sucesso');
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Vendedor  $vendedor
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendedores $vendedores)
+    public function destroy(Vendedor $vendedor)
     {
-        $vendedores->delete();
+        $vendedor->delete();
 
-        return redirect()->route('vendedores.index')->with('success', 'vendedores excluído com sucesso!');
+        return redirect()->route('vendedores.index')
+                         ->with('success', 'Vendedor deletado com sucesso');
     }
 }

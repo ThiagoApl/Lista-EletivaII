@@ -1,58 +1,45 @@
-<<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Fornecedor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Editar Fornecedor</h2>
-                </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('fornecedores.index') }}"> Voltar</a>
-                </div>
-            </div>
+@extends('layouts.app')
+
+@section('content')
+    <h1>Editar Vendedor</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        @if(session('status'))
-            <div class="alert alert-success mb-1 mt-1">
-                {{ session('status') }}
-            </div>
-        @endif
-        <form action="{{ route('fornecedores.update', $fornecedor->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Nome do Fornecedor:</strong>
-                        <input type="text" name="nome" value="{{ $fornecedor->nome }}" class="form-control" placeholder="Nome do Fornecedor">
-                        @error('nome')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Foto do Fornecedor:</strong>
-                        <input type="file" name="foto" class="form-control" placeholder="Foto do Fornecedor">
-                        @error('foto')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                 <div class="col-md-12">
-                    <img src="{{ asset($fornecedor->foto) }}" alt="{{ $fornecedor->nome }}" title="{{ $fornecedor->nome }}" class="rounded-circle" width="150" height="150">
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <button type="submit" class="btn btn-primary ml-3">Atualizar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
+    @endif
+
+    <form action="{{ route('vendedores.update', $vendedor->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" class="form-control" value="{{ old('nome', $vendedor->nome) }}" required>
+        </div>
+        <div class="form-group">
+            <label for="codigo_identificacao">Código de Identificação:</label>
+            <input type="text" name="codigo_identificacao" id="codigo_identificacao" class="form-control" value="{{ old('codigo_identificacao', $vendedor->codigo_identificacao) }}" required>
+        </div>
+        <div class="form-group">
+            <label for="comissao">Comissão:</label>
+            <input type="number" name="comissao" id="comissao" class="form-control" value="{{ old('comissao', $vendedor->comissao) }}" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="area_atuacao">Área de Atuação:</label>
+            <input type="text" name="area_atuacao" id="area_atuacao" class="form-control" value="{{ old('area_atuacao', $vendedor->area_atuacao) }}" required>
+        </div>
+        <div class="form-group">
+            <label for="foto">Foto:</label>
+            <input type="file" name="foto" id="foto" class="form-control">
+            @if ($vendedor->foto)
+                <img src="{{ asset('storage/' . $vendedor->foto) }}" alt="Foto do Vendedor" class="img-thumbnail">
+            @endif
+        </div>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+        <a href="{{ route('vendedores.index') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+@endsection
