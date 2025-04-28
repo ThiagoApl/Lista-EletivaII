@@ -1,27 +1,32 @@
 <?php
-use Illuminate\Database\Migrations\Migration; use Illuminate\Database\Schema\Blueprint; use Illuminate\Support\Facades\Schema;
-return new class extends Migration
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateFornecedoresTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('produtos', function (Blueprint $table) {
+        Schema::create('fornecedores', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('foto')->nullable(); // Pode ser nulo
-            $table->string('codigo')->unique();
-            $table->integer('quantidade_funcionarios_acesso')->nullable(); // Pode ser nulo
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('fornecedor');
+        Schema::dropIfExists('fornecedores');
     }
-};
+}
