@@ -92,4 +92,14 @@ class SaidaEstoqueController extends Controller
 
         return redirect()->route('saidas_estoque.index')->with('success', 'Saída de Estoque excluída com sucesso!');
     }
+
+
+    public function gerarRelatorio()
+    {
+        // Buscar os dados das saídas do estoque
+        $saidas = SaidaEstoque::with('produto', 'vendedor')->get(); // Eager loading para otimizar a consulta
+
+        // Retornar a view com os dados
+        return view('saida_estoque.relatorio', compact('saidas'));
+    }
 }

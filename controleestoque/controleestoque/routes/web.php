@@ -15,3 +15,4 @@ Route::resource('vendedores', VendedorController::class);
 Route::resource('entradas_estoque', EntradaEstoqueController::class);
 Route::resource('saidas_estoque', SaidaEstoqueController::class);
 Route::get('/relatorio-entrada', [EntradaEstoqueController::class, 'gerarRelatorioEntrada'])->name('relatorio.entrada');
+Route::get('/saida-estoque/relatorio', [SaidaEstoqueController::class, 'gerarRelatorio'])->name('saida_estoque.relatorio');

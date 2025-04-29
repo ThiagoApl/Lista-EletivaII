@@ -38,4 +38,6 @@ class SaidaEstoque extends Model
     {
         return $this->belongsTo(Vendedor::class, 'vendedor_id');
     }
+
+    
 }
