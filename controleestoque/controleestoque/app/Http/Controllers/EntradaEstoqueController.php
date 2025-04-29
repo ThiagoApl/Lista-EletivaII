@@ -107,4 +107,19 @@ class EntradaEstoqueController extends Controller
 
         return redirect()->route('entradas_estoque.index')->with('success', 'Entrada de estoque excluída com sucesso.');
     }
-}
+
+
+
+
+            public function gerarRelatorioEntrada()
+     {
+         // Buscar todos os registros de entrada de estoque com os dados necessários
+         $entradas = EntradaEstoque::with('produto', 'fornecedor') // Eager loading para otimizar
+             ->select('entrada_estoques.*') // Seleciona todas as colunas da tabela entrada_estoques
+             ->join('produtos', 'entrada_estoques.produto_id', '=', 'produtos.id')
+             ->join('fornecedores', 'entrada_estoques.fornecedor_id', '=', 'fornecedores.id')
+             ->get();
+
+         return view('relatorio_entrada', compact('entradas'));
+     }
+ }
