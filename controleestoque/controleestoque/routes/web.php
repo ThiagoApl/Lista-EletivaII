@@ -2,17 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/Formulario', function () {
+    return view('Formulario');
+});
+
+Route::post ('/Formulario_resposta', function(\Illuminate\http\Request $request) {
+        $valor1 = intval($request->input('Valor1'));
+        $valor2 = intval($request->input('Valor2'));
+        $soma = $valor1 + $valor2;
+        return View ('Formulario', compact('Soma'));
+ });
