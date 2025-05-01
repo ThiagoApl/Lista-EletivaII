@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title' 'Primeiro Exemplo')
+@section('title', 'Primeiro Exemplo')
 
 @section('content')
     <h1 class="text-center">Formulario de Valores</h1>
