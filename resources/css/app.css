@@ -1,0 +1,739 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom-admin.css */
+
+/* --- GRADIENTE DE FUNDO DINÂMICO (GLASSMORPHISM) --- */
+body {
+  @apply min-h-screen font-sans leading-relaxed;
+  background: linear-gradient(135deg, #23243a 0%, #2b5876 100%);
+  background-attachment: fixed;
+  color: #f3f4f6;
+}
+
+/* --- GLASSMORPHISM CARD --- */
+.card, .main-content > .card, .table, .glass {
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border-radius: 1.25rem;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.card:hover, .glass:hover {
+  box-shadow: 0 12px 40px 0 rgba(59,130,246,0.25), 0 1.5px 8px 0 rgba(31,38,135,0.10);
+  background: rgba(255,255,255,0.18);
+}
+
+/* --- SIDEBAR MODERNA --- */
+.sidebar {
+  @apply fixed top-0 left-0 h-full w-64 flex flex-col justify-between p-5 z-30 border-r border-gray-800;
+  background: linear-gradient(160deg, #23243a 60%, #2b5876 100%);
+  box-shadow: 0 0 32px 0 rgba(31,38,135,0.18);
+}
+.sidebar ul {
+  @apply space-y-3;
+}
+.sidebar li a {
+  @apply block px-5 py-3 rounded-lg font-medium transition-colors duration-300 ease-in-out;
+  color: #e0e7ef;
+  letter-spacing: 0.01em;
+  position: relative;
+  text-shadow: 0 1px 2px #23243a44;
+}
+.sidebar li a:hover, .sidebar li a:focus {
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  color: #fff;
+  box-shadow: 0 2px 16px 0 rgba(59,130,246,0.18);
+  outline: none;
+}
+.sidebar li a.active {
+  background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 0 16px 2px #6366f1cc;
+  border-left: 4px solid #06b6d4;
+}
+.sidebar .sidebar-user {
+  @apply flex items-center gap-3 mt-8 mb-2 px-2;
+}
+.sidebar .sidebar-avatar {
+  @apply w-10 h-10 rounded-full border-2 border-blue-400 shadow-md object-cover;
+}
+.sidebar .sidebar-user-info {
+  @apply flex flex-col;
+}
+.sidebar .sidebar-user-info .name {
+  @apply font-bold text-gray-100 text-sm;
+}
+.sidebar .sidebar-user-info .email {
+  @apply text-xs text-gray-400;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  @apply ml-64 p-8 min-h-screen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+}
+
+/* --- TÍTULOS --- */
+.page-title {
+  @apply text-5xl font-extrabold mb-10 tracking-tight;
+  color: #fff;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 16px #23243a88;
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- TABELAS AVANÇADAS --- */
+.table {
+  @apply w-full shadow-xl rounded-2xl overflow-hidden border-0;
+  background: rgba(255,255,255,0.10);
+  font-family: "Inter", sans-serif;
+  margin-bottom: 2rem;
+}
+.table thead th {
+  @apply py-4 px-6 text-left sticky top-0 z-10 uppercase tracking-wide;
+  background: linear-gradient(90deg, #23243a 0%, #2b5876 100%);
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid #3b82f6;
+  letter-spacing: 0.08em;
+}
+.table tbody tr {
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.table tbody tr:nth-child(even) {
+  background: rgba(59,130,246,0.04);
+}
+.table tbody tr:hover {
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  color: #fff;
+  box-shadow: 0 2px 16px 0 rgba(59,130,246,0.10);
+}
+.table td {
+  @apply py-3 px-6 align-top;
+  color: #e0e7ef;
+}
+.table .table-action {
+  @apply text-xs px-2 py-1 rounded font-semibold transition-colors duration-200 cursor-pointer;
+  background: rgba(255,255,255,0.10);
+  margin-right: 0.25rem;
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
+}
+.table .table-action.view {
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  color: #fff;
+}
+.table .table-action.edit {
+  background: linear-gradient(90deg, #fbbf24 0%, #f59e42 100%);
+  color: #fff;
+  border: 1px solid #fbbf24;
+}
+.table .table-action.delete {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+  color: #fff;
+  border: 1px solid #ef4444;
+}
+
+/* --- BOTÕES NEON E ANIMADOS --- */
+.btn {
+  @apply inline-flex items-center justify-center font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50 disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed;
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  color: #fff;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 16px 0 #06b6d488;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px #23243a44;
+}
+.btn:hover, .btn:focus {
+  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 100%);
+  box-shadow: 0 4px 32px 0 #06b6d4cc;
+  color: #fff;
+}
+.btn:active {
+  @apply scale-95;
+  transition-duration: 150ms;
+}
+.btn::after {
+  content: "";
+  @apply absolute left-0 top-0 w-full h-full rounded-lg;
+  background: radial-gradient(circle, rgba(59,130,246,0.18) 10%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.btn:active::after {
+  opacity: 1;
+}
+
+.btn-delete {
+  @apply inline-flex items-center justify-center font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-red-400 focus:ring-opacity-50;
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%) !important;
+  color: #fff !important;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px #23243a44;
+  box-shadow: 0 2px 16px 0 #ef444488;
+}
+.btn-delete:hover, .btn-delete:focus {
+  background: linear-gradient(90deg, #f87171 0%, #ef4444 100%) !important;
+  box-shadow: 0 4px 32px 0 #ef4444cc;
+  color: #fff !important;
+  animation: pulseGlow 1.5s infinite;
+  filter: brightness(1.1) drop-shadow(0 0 8px #ef4444cc);
+}
+.btn-delete:active {
+  @apply scale-95;
+}
+.btn-delete::after {
+  content: "";
+  @apply absolute left-0 top-0 w-full h-full rounded-lg;
+  background: radial-gradient(circle, rgba(220,38,38,0.18) 10%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.btn-delete:active::after {
+  opacity: 1;
+}
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px rgba(220, 38, 38, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 18px 8px rgba(220, 38, 38, 0.9);
+  }
+}
+
+/* --- BADGES ANIMADAS --- */
+.badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-semibold mr-2;
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  color: #fff;
+  box-shadow: 0 1px 4px 0 #06b6d488;
+  animation: badgePulse 2s infinite alternate;
+}
+@keyframes badgePulse {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.2) drop-shadow(0 0 8px #06b6d4); }
+}
+
+/* --- CARDS FLUTUANTES E ANIMADOS --- */
+.card {
+  animation: cardIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;
+}
+@keyframes cardIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* --- TOOLTIP 3D --- */
+.tooltip, .tooltip-animated {
+  box-shadow: 0 4px 24px 0 #23243a88;
+  border: 1px solid #3b82f6;
+  background: linear-gradient(135deg, #23243a 60%, #2b5876 100%);
+  color: #fff;
+}
+
+/* --- LOADER SPINNER E PROGRESS BAR --- */
+.loader {
+  border-top: 4px solid #06b6d4;
+  border-right: 4px solid #3b82f6;
+  border-bottom: 4px solid #06b6d4;
+  border-left: 4px solid transparent;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader-bar-inner {
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+}
+
+/* --- DARK MODE TOGGLE (opcional, só visual) --- */
+.dark-toggle {
+  @apply fixed top-6 right-8 z-50 flex items-center gap-2 cursor-pointer select-none;
+  background: rgba(31,38,135,0.18);
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 16px 0 #23243a88;
+  transition: background 0.3s;
+}
+.dark-toggle:hover {
+  background: rgba(59,130,246,0.18);
+}
+
+/* --- MICRODETALHES E ANIMAÇÕES --- */
+.input, select, textarea {
+  background: rgba(30,32,48,0.85) !important;
+  color: #fff !important;
+  border: 1.5px solid #3b82f6;
+  box-shadow: 0 1px 4px 0 #23243a33;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.input:focus, select:focus, textarea:focus {
+  background: rgba(30,32,48,0.95) !important;
+  color: #fff !important;
+  border: 2px solid #06b6d4;
+  outline: none;
+}
+.input::placeholder, select::placeholder, textarea::placeholder {
+  color: #bfc9da !important;
+  opacity: 1;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background: #23243a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* --- FLOATING ACTION BUTTON --- */
+.fab {
+  @apply fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-full shadow-2xl w-16 h-16 flex items-center justify-center text-3xl z-50 transition hover:scale-110;
+  box-shadow: 0 8px 32px 0 #06b6d4cc;
+  border: 2px solid #fff3;
+}
+.fab:active {
+  @apply scale-95;
+}
+
+/* --- ALERTAS E FEEDBACKS --- */
+.alert, .success-message, .error-message {
+  @apply p-4 rounded-lg mb-4 flex items-center gap-3 font-semibold shadow-xl;
+  background: linear-gradient(90deg, #23243a 0%, #2b5876 100%);
+  color: #fff;
+  border-left: 4px solid #06b6d4;
+}
+.alert-success {
+  background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+  color: #fff;
+  border-left: 4px solid #22c55e;
+}
+.alert-error {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+  color: #fff;
+  border-left: 4px solid #ef4444;
+}
+.alert-warning {
+  background: linear-gradient(90deg, #fbbf24 0%, #f59e42 100%);
+  color: #fff;
+  border-left: 4px solid #fbbf24;
+}
+.alert-info {
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  color: #fff;
+  border-left: 4px solid #3b82f6;
+}
+
+/* --- CORRIGE BOTÕES BRANCOS --- */
+button, .btn, .btn-delete, input[type=submit], input[type=button] {
+  color: #fff !important;
+  border: none;
+}
+button:disabled, .btn:disabled, .btn-delete:disabled, input[type=submit]:disabled, input[type=button]:disabled {
+  background-color: #a1a1aa !important;
+  color: #e5e7eb !important;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  @apply flex items-center text-sm text-gray-500 mb-6 gap-2;
+}
+.breadcrumbs a {
+  @apply text-blue-600 hover:underline transition;
+}
+.breadcrumbs .separator {
+  @apply text-gray-400;
+}
+
+/* Cards */
+.card-header {
+  @apply font-bold text-lg mb-2 text-gray-800;
+}
+.card-content {
+  @apply text-gray-700;
+}
+
+/* Badges */
+.badge-success {
+  @apply bg-green-100 text-green-800;
+}
+.badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+.badge-neutral {
+  @apply bg-gray-200 text-gray-700;
+}
+
+/* Tags */
+.tag {
+  @apply inline-block px-2 py-1 rounded bg-gray-200 text-gray-700 text-xs font-medium mr-1 mb-1;
+}
+.tag-primary {
+  @apply bg-blue-200 text-blue-800;
+}
+.tag-danger {
+  @apply bg-red-200 text-red-800;
+}
+
+/* Tooltips */
+.tooltip {
+  @apply absolute z-50 px-3 py-2 rounded bg-gray-900 text-white text-xs shadow-lg opacity-0 pointer-events-none transition-opacity duration-200;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+}
+[data-tooltip]:hover .tooltip, [data-tooltip]:focus .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Loader Spinner */
+.loader {
+  @apply inline-block w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin;
+}
+
+/* Microinterações para botões */
+.btn {
+  @apply inline-flex items-center justify-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition 
+          duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50 disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed;
+  user-select: none;
+  font-family: "Inter", sans-serif;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 8px 0 rgba(59,130,246,0.10);
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+.btn:active {
+  @apply scale-95;
+  transition-duration: 150ms;
+}
+.btn::after {
+  content: "";
+  @apply absolute left-0 top-0 w-full h-full rounded-lg;
+  background: radial-gradient(circle, rgba(59,130,246,0.15) 10%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.btn:active::after {
+  opacity: 1;
+}
+
+/* Floating Action Button */
+.fab {
+  @apply fixed bottom-8 right-8 bg-blue-600 text-white rounded-full shadow-lg w-16 h-16 flex items-center justify-center text-3xl z-50 transition hover:bg-blue-700;
+  box-shadow: 0 4px 24px 0 rgba(59,130,246,0.18);
+}
+.fab:active {
+  @apply scale-95;
+}
+
+/* Tabelas: bordas arredondadas, linhas alternadas, cabeçalho fixo, padding confortável */
+.table {
+  @apply w-full bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200;
+  border-collapse: separate; /* para bordas arredondadas funcionarem */
+  border-spacing: 0;
+  font-family: "Inter", sans-serif;
+}
+.table thead th {
+  @apply bg-gradient-to-r from-gray-100 via-gray-50 to-white text-gray-800 font-bold py-4 px-6 text-left sticky top-0 z-10 border-b border-gray-300 uppercase tracking-wide;
+  /* sticky topo para cabeçalho fixo */
+}
+.table tbody tr:nth-child(even) {
+  @apply bg-gray-50;
+}
+.table tbody tr:hover {
+  @apply bg-blue-50;
+  transition: background 0.2s;
+}
+.table td {
+  @apply py-3 px-6 text-gray-700 align-top;
+}
+.table .table-action {
+  @apply text-xs px-2 py-1 rounded font-semibold transition-colors duration-200;
+}
+.table .table-action.view {
+  @apply bg-blue-100 text-blue-700 hover:bg-blue-200;
+}
+.table .table-action.edit {
+  @apply bg-yellow-100 text-yellow-800 hover:bg-yellow-200;
+}
+.table .table-action.delete {
+  @apply bg-red-100 text-red-700 hover:bg-red-200;
+}
+
+/* Formulários */
+
+/* Label legível e consistente */
+.label {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+/* Inputs com foco: sombra e borda azul suave */
+.input {
+  @apply w-full border border-blue-300 rounded-lg px-4 py-3 placeholder-gray-400 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow;
+  box-shadow: 0 1px 8px 0 rgba(59,130,246,0.08);
+  font-family: "Inter", sans-serif;
+  border-width: 2px;
+  border-style: solid;
+  background-color: rgba(255,255,255,0.8);
+  color: #1e293b;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.input:focus {
+  background-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.7);
+  border-color: #3b82f6;
+  color: #fff;
+}
+.input:focus::placeholder {
+  color: #dbeafe;
+}
+.input:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: #2563eb;
+  box-shadow: none;
+  color: #1e293b;
+}
+.input::placeholder {
+  color: #94a3b8;
+}
+@media (prefers-color-scheme: dark) {
+  .input {
+    background-color: rgba(31, 41, 55, 0.8);
+    color: #e0e7ff;
+    border-color: #3b82f6;
+  }
+  .input:focus {
+    background-color: rgba(59, 130, 246, 0.45);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.9);
+    border-color: #2563eb;
+  }
+  .input:focus::placeholder {
+    color: #dbeafe;
+  }
+  .input:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #e0e7ff;
+    box-shadow: none;
+  }
+  .input::placeholder {
+    color: #94a3b8;
+  }
+}
+
+/* Select estilizado */
+.select {
+  @apply w-full border border-gray-300 rounded-lg px-4 py-3 bg-white text-gray-900 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500;
+  font-family: "Inter", sans-serif;
+}
+.select:focus {
+  @apply shadow-lg;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.18);
+}
+
+/* Checkbox e radio customizados */
+.checkbox, .radio {
+  @apply accent-blue-600 w-5 h-5 rounded border-gray-300 focus:ring-2 focus:ring-blue-400 transition;
+}
+.checkbox:checked {
+  @apply bg-blue-600 border-blue-600;
+}
+.radio:checked {
+  @apply bg-blue-600 border-blue-600;
+}
+
+/* Switch toggle */
+.switch {
+  @apply relative inline-block w-12 h-6 align-middle select-none transition;
+}
+.switch input {
+  @apply hidden;
+}
+.switch-slider {
+  @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 rounded-full transition;
+}
+.switch input:checked + .switch-slider {
+  @apply bg-blue-600;
+}
+.switch-slider:before {
+  content: "";
+  @apply absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow-md transition;
+}
+.switch input:checked + .switch-slider:before {
+  @apply translate-x-6;
+}
+
+/* Alertas */
+.alert {
+  @apply p-4 rounded-lg mb-4 flex items-center gap-3 font-semibold shadow-md;
+}
+.alert-success {
+  @apply bg-green-100 text-green-800 border-l-4 border-green-500;
+}
+.alert-error {
+  @apply bg-red-100 text-red-800 border-l-4 border-red-500;
+}
+.alert-warning {
+  @apply bg-yellow-100 text-yellow-800 border-l-4 border-yellow-500;
+}
+.alert-info {
+  @apply bg-blue-100 text-blue-800 border-l-4 border-blue-500;
+}
+
+/* Tooltip animado */
+.tooltip-animated {
+  @apply absolute z-50 px-3 py-2 rounded bg-gray-900 text-white text-xs shadow-lg opacity-0 pointer-events-none transition-all duration-200;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px) scale(0.95);
+}
+[data-tooltip]:hover .tooltip-animated, [data-tooltip]:focus .tooltip-animated {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(10px) scale(1);
+}
+
+/* Loader progress bar */
+.loader-bar {
+  @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden relative;
+}
+.loader-bar-inner {
+  @apply h-full bg-blue-500 rounded-full animate-pulse;
+  width: 40%;
+  animation: loaderBarMove 1.5s infinite linear;
+}
+
+@keyframes loaderBarMove {
+  0% { margin-left: 0; }
+  100% { margin-left: 60%; }
+}
+
+/* Dark mode (opcional) */
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-100;
+  }
+  .sidebar {
+    @apply bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 border-gray-700;
+  }
+  .main-content {
+    @apply bg-gradient-to-br from-gray-800 via-gray-900 to-gray-700;
+  }
+  .card {
+    @apply bg-gray-800 border-gray-700 text-gray-100;
+    padding: 2rem;
+  }
+  .table {
+    @apply bg-gray-900 text-gray-100 border-gray-700;
+  }
+  .table thead th {
+    @apply bg-gray-800 text-gray-200 border-gray-700;
+  }
+  .table tbody tr:nth-child(even) {
+    @apply bg-gray-800;
+  }
+  .table tbody tr:hover {
+    @apply bg-blue-900;
+  }
+  .input, .select {
+    @apply bg-gray-800 text-gray-100 border-gray-700;
+  }
+  .input:focus, .select:focus {
+    @apply shadow-lg;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.28);
+  }
+  .btn, .btn-delete, .fab {
+    @apply shadow-xl;
+  }
+}
+
+/* Recomendações para futuros ajustes:
+ - Expandir botões com ícones (usar material design com <svg>)
+ - Suporte dark mode (usar css variables e Tailwind dark variant)
+ - Componentizar alertas e inputs para melhorar reutilização
+ - Adicionar animações suaves nos modals e dropdowns
+ - Refatorar para utilizar container queries quando já suportado
+*/
+
+.no-bg {
+  color: #fff !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  min-width: 70px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  margin: 0 2px;
+}
+.no-bg.view {
+  background: #2563eb !important; /* azul */
+  border: 1px solid #2563eb !important;
+  min-width: 70px;
+}
+.no-bg.edit {
+  background: #f59e42 !important; /* amarelo */
+  border: 1px solid #f59e42 !important;
+}
+.no-bg.delete {
+  background: #ef4444 !important; /* vermelho */
+  border: 1px solid #ef4444 !important;
+}
+.no-bg.view:hover {
+  background: #1d4ed8 !important;
+  border: 1px solid #1d4ed8 !important;
+}
+.no-bg.edit:hover {
+  background: #d97706 !important;
+  border: 1px solid #d97706 !important;
+}
+.no-bg.delete:hover {
+  background: #b91c1c !important;
+  border: 1px solid #b91c1c !important;
+}
+.table tbody tr:hover {
+  background: none !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+  
+  
